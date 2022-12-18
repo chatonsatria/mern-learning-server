@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+  <%- include ../../layoutParts/head.ejs %>
+
+  <body class="hold-transition sidebar-mini layout-fixed">
+    <!-- navbar -->
+    <%- include ../../layoutParts/navbar.ejs %>
+    <!-- sidebar -->
+    <%- include ../../layoutParts/sidebar.ejs %>
+    <!-- content wrapper -->
+    <div class="content-wrapper">
+      <!-- content header -->
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1 class="m-0">Category</h1>
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                <li class="breadcrumb-item active">Category</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header">
+                  <a href="/category/create" class="btn btn-primary">
+                    <i class="nav-icon far fa-plus-square"></i>
+                    Tambah
+                  </a>
+                </div>
+                <%- include ./parts/table.ejs %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <!-- footer -->
+    <%- include ../../layoutParts/footer.ejs %>
+    <!-- js -->
+    <%- include ../../layoutParts/js.ejs %>
+  </body>
+</html>
