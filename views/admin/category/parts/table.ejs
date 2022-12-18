@@ -4,6 +4,7 @@
     <thead>
       <tr>
         <th>No</th>
+        <th>Category ID</th>
         <th>Category Name</th>
         <th>Action</th>
       </tr>
@@ -12,6 +13,7 @@
       <% for(let i = 0; i < category.length; i++){%>
       <tr>
         <td><%= i + 1 %></td>
+        <td><%= category[i]._id %></td>
         <td><%= category[i].name %></td>
         <td>
           <form

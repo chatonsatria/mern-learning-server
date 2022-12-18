@@ -1,11 +1,15 @@
 // app js - file entry aplikasi - routing dan middleware
-
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-var methodOverride = require("method-override");
+// added method override
+const methodOverride = require("method-override");
+// added express-session
+const session = require("express-session");
+// added connect-flash
+const flash = require("connect-flash");
 
 // define routers
 var dashboardRouter = require("./app/dashboard/router");
@@ -17,6 +21,15 @@ var app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {},
+  })
+);
+app.use(flash());
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
