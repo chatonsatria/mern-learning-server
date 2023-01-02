@@ -1,0 +1,98 @@
+<!-- /.card-header -->
+<div class="card-body">
+  <table id="example2" class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Post's ID</th>
+        <th>User's ID</th>
+        <th>Name</th>
+        <th>Post Title</th>
+        <th>Category</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for(let i = 0; i < posts.length; i++){%>
+      <tr>
+        <td><%= i + 1 %></td>
+        <td><%= posts[i]._id %></td>
+        <td><%= posts[i].user._id %></td>
+        <td><%= posts[i].user.username %></td>
+        <td><%= posts[i].title %></td>
+        <td>
+          <% posts[i].category.forEach((category) => { %>
+          <span class="badge badge-primary"><%= category.name %></span>
+          <% }) %>
+        </td>
+        <td>
+          <% if(posts[i].status === "0"){ %>
+          <span class="badge badge-success p-2">Visible</span> <% } else
+          if(posts[i].status === "1") { %>
+          <span class="badge badge-secondary p-2">Hidden</span> <% } else
+          if(posts[i].status === "2") { %>
+          <span class="badge badge-warning p-2">Pending</span> <% } else
+          if(posts[i].status === "3") { %>
+          <span class="badge badge-danger p-2">Declined</span> <% } %>
+        </td>
+        <td>
+          <form
+            action="/post/status/<%= posts[i]._id %>?_method=PUT"
+            method="POST"
+            style="display: inline-block"
+          >
+            <% if(posts[i].status === "2"){ %>
+            <button
+              style="display: inline-block"
+              type="submit"
+              class="btn btn-info btn-sm"
+              name="btnAccept"
+              value="0"
+            >
+              Accept
+            </button>
+            <button
+              style="display: inline-block"
+              type="submit"
+              class="btn btn-info btn-sm"
+              name="btnDeclined"
+              value="3"
+            >
+              Decline
+            </button>
+            <% } %> <% if(posts[i].status === "3" && user_role === "admin"){ %>
+            <button
+              style="display: inline-block"
+              type="submit"
+              class="btn btn-info btn-sm"
+            >
+              <i class="fas fa-pencil-alt"></i>
+              <% if(posts[i].status === "0"){ %> Hide <% } else { %> Show <% }
+              %>
+            </button>
+            <% } %>
+          </form>
+          <form
+            action="/post/delete/<%= posts[i]._id %>?_method=DELETE"
+            method="POST"
+            style="display: inline-block"
+          >
+            <a href="/post/edit/<%= posts[i]._id %>" class="btn btn-info btn-sm"
+              ><i class="fas fa-pencil-alt"></i>Edit</a
+            >
+            <button
+              style="display: inline-block"
+              type="submit"
+              class="btn btn-danger btn-sm"
+            >
+              <i class="fas fa-trash"></i>Delete
+            </button>
+          </form>
+        </td>
+      </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>
+<!-- /.card-body -->

@@ -52,12 +52,14 @@
         role="menu"
         data-accordion="false"
       >
+        <!-- dashboard welcome -->
         <li class="nav-item">
           <a href="/" class="nav-link">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>Dashboard</p>
           </a>
         </li>
+        <!-- menus -->
         <li class="nav-item menu-close">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
@@ -68,15 +70,9 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="/user-posts" class="nav-link">
+              <a href="/post" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>User Posts</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="/admin-posts" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Admin Posts</p>
+                <p>Posts</p>
               </a>
             </li>
             <li class="nav-item">
@@ -116,16 +112,24 @@
             </li>
           </ul>
         </li>
-        <!-- <li class="nav-item">
-          <a href="pages/widgets.html" class="nav-link">
-            <i class="nav-icon fas fa-th"></i>
-            <p>
-              Widgets
-              <span class="right badge badge-danger">New</span>
-            </p>
+        <!-- logout -->
+        <li class="nav-item">
+          <a href="/logout" class="nav-link">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="1em"
+              height="1em"
+              preserveAspectRatio="xMidYMid meet"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="currentColor"
+                d="m17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"
+              />
+            </svg>
+            <p>Logout</p>
           </a>
-        </li> -->
-        <!-- <li class="nav-header">EXAMPLES</li> -->
+        </li>
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

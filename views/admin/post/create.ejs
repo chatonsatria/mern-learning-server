@@ -14,15 +14,15 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">Edit Category - <%= category.name %></h1>
+              <h1 class="m-0">Create New Post</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
                 <li class="breadcrumb-item">
-                  <a href="/category">Category</a>
+                  <a href="/post">Post</a>
                 </li>
-                <li class="breadcrumb-item active">Edit</li>
+                <li class="breadcrumb-item active">Create New Post</li>
               </ol>
             </div>
           </div>
@@ -32,37 +32,43 @@
       <section class="content">
         <div class="container-fluid">
           <div class="card card-primary">
-            <form
-              action="/category/edit/<%= category._id %>?_method=PUT"
-              method="POST"
-              enctype="multipart/form-data"
-            >
+            <form action="/post/create" method="POST">
               <div class="card-body">
                 <div class="form-group">
-                  <label for="name">Category Name</label>
+                  <label for="name">Title</label>
                   <input
-                    name="name"
-                    type="name"
+                    name="title"
+                    type="text"
                     class="form-control"
-                    id="name"
-                    value="<%= category.name %>"
-                    placeholder="enter category name"
+                    id="title"
+                    placeholder="Enter post title"
+                    required
                   />
                 </div>
                 <div class="form-group">
-                  <label for="icon">Category Icon</label>
-                  <input
-                    name="icon"
-                    type="file"
-                    id="icon"
-                    class="form-control"
-                  />
-                  <br />
-                  <img
-                    src="http://localhost:3000/uploads/<%= category.icon %>"
-                    id="preview"
-                  />
+                  <label for="name">Post Content</label>
+                  <textarea name="post_content" id="summernote">
+                        Place <em>some</em> <u>text</u> <strong>here</strong>
+                      </textarea
+                  >
                 </div>
+                <div class="form-group">
+                  <label>Post Category</label>
+                  <select
+                    class="select2"
+                    multiple="multiple"
+                    data-placeholder="Select a State"
+                    style="width: 100%"
+                    name="category"
+                  >
+                    <% categoryOptions.forEach((category) => { %>
+                    <option value="<%= category._id %>">
+                      <%= category.name %>
+                    </option>
+                    <% }) %>
+                  </select>
+                </div>
+                <div class="form-group"></div>
               </div>
               <div class="card-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -91,12 +97,6 @@
         reader.readAsDataURL(input.files[0]);
       }
     }
-
-    $("#delete-image").click(function () {
-      const form = new FormData();
-      form.append("icon", "");
-      document.forms.item.form.submit();
-    });
 
     $("#icon").change(function () {
       readURL(this);

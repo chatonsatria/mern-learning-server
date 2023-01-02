@@ -1,7 +1,11 @@
 module.exports = {
   index: async (req, res) => {
     try {
-      res.render("admin/dashboard", { title: "Dashboard" });
+      console.log("name", req.session);
+      res.render("admin/dashboard", {
+        username: req.session.user.username,
+        title: "Dashboard",
+      });
     } catch (err) {
       console.log(err);
     }

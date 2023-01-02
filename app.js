@@ -14,8 +14,13 @@ const flash = require("connect-flash");
 // define routers
 var dashboardRouter = require("./app/dashboard/router");
 var categoryRouter = require("./app/category/router");
+var postRouter = require("./app/posts/router");
+var usersRouter = require("./app/users/router");
+// api player router
+var playerRouter = require("./app/player/router");
 
 var app = express();
+var URL = "/api/v1";
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -45,12 +50,24 @@ app.use(
   express.static(path.join(__dirname, "/node_modules/admin-lte"))
 );
 
-// use routes
-app.use("/", dashboardRouter);
+// router login
+app.use("/", usersRouter);
+// dashboard
+app.use("/dashboard", dashboardRouter);
+// router category
 app.use("/category", categoryRouter);
 app.use("/category/create", categoryRouter);
 app.use("/category/edit/:id", categoryRouter);
 app.use("/category/delete/:id", categoryRouter);
+app.use("/category/delete-image/:id", categoryRouter);
+// router post
+app.use("/post", postRouter);
+app.use("/post/create", postRouter);
+app.use("/post/edit/:id", postRouter);
+app.use("/post/status/:id", postRouter);
+app.use("/post/delete/:id", postRouter);
+// api
+app.use(`${URL}/players`, playerRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
